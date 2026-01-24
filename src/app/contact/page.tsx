@@ -71,199 +71,179 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
-      <AnimatedSection className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
-        <div className="section-container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="heading-xl mb-6 font-serif">Get In Touch</h1>
-            <p className="text-xl text-primary-100 leading-relaxed">
-              Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
-            </p>
-          </div>
+  <div className="pt-20 bg-black">
+    {/* Hero Section */}
+    <AnimatedSection className="py-20 bg-black">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-semibold mb-6 text-white">
+            Get In Touch
+          </h1>
+          <p className="text-xl text-neutral-400 leading-relaxed">
+            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
         </div>
-      </AnimatedSection>
+      </div>
+    </AnimatedSection>
 
-      {/* Contact Info Cards */}
-      <AnimatedSection className="section-padding bg-white">
-        <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactInfo.map((info, index) => (
-              <div key={index} className="bg-gray-50 p-6 rounded-xl text-center">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <info.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-bold text-gray-900 mb-2">{info.title}</h3>
-                {info.details.map((detail, idx) => (
-                  <p key={idx} className="text-sm text-gray-600">{detail}</p>
-                ))}
+    {/* Contact Info Cards */}
+    <AnimatedSection className="py-20 bg-black">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {contactInfo.map((info, index) => (
+            <div 
+              key={index} 
+              className="bg-neutral-900/40 border border-neutral-800 p-6 rounded-xl text-center transition-transform duration-300 hover:-translate-y-1"
+            >
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center mx-auto mb-4">
+                <info.icon className="w-6 h-6 text-black" />
               </div>
-            ))}
-          </div>
+              <h3 className="font-semibold text-white mb-2">{info.title}</h3>
+              {info.details.map((detail, idx) => (
+                <p key={idx} className="text-sm text-neutral-400">{detail}</p>
+              ))}
+            </div>
+          ))}
+        </div>
 
-          {/* Contact Form */}
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Form */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="input-label">Your Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="input-field"
-                      placeholder="John Doe"
-                    />
-                  </div>
+        {/* Contact Form */}
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Form */}
+            <div>
+              <h2 className="text-3xl font-semibold text-white mb-6">Send Us a Message</h2>
+              
+              <div className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-8">
+                <div className="space-y-5">
+                  <TextInput 
+                    label="Your Name *" 
+                    name="name" 
+                    value={formData.name} 
+                    onChange={handleInputChange} 
+                    required 
+                  />
 
-                  <div>
-                    <label htmlFor="email" className="input-label">Email Address *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="input-field"
-                      placeholder="john@example.com"
-                    />
-                  </div>
+                  <TextInput 
+                    label="Email Address *" 
+                    name="email" 
+                    type="email"
+                    value={formData.email} 
+                    onChange={handleInputChange} 
+                    required 
+                  />
 
-                  <div>
-                    <label htmlFor="phone" className="input-label">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="input-field"
-                      placeholder="+1 (234) 567-890"
-                    />
-                  </div>
+                  <TextInput 
+                    label="Phone Number" 
+                    name="phone" 
+                    type="tel"
+                    value={formData.phone} 
+                    onChange={handleInputChange} 
+                  />
 
-                  <div>
-                    <label htmlFor="subject" className="input-label">Subject *</label>
-                    <select
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      required
-                      className="input-field"
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="admissions">Admissions Question</option>
-                      <option value="programs">Program Information</option>
-                      <option value="partnership">Partnership Opportunity</option>
-                      <option value="support">Technical Support</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
+                  <SelectInput label="Subject *" name="subject">
+                    <option value="">Select a subject</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="admissions">Admissions Question</option>
+                    <option value="programs">Program Information</option>
+                    <option value="partnership">Partnership Opportunity</option>
+                    <option value="support">Technical Support</option>
+                    <option value="other">Other</option>
+                  </SelectInput>
 
-                  <div>
-                    <label htmlFor="message" className="input-label">Message *</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      required
-                      rows={6}
-                      className="textarea-field"
-                      placeholder="Tell us how we can help you..."
-                    />
-                  </div>
+                  <TextArea 
+                    label="Message *" 
+                    name="message" 
+                    rows={6}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                  />
 
-                  <button type="submit" className="btn-primary w-full flex items-center justify-center space-x-2">
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
-                  </button>
-                </form>
-              </div>
-
-              {/* Info Sidebar */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Contact Us?</h2>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Admissions Support</h3>
-                    <p className="text-gray-600">
-                      Get answers about our programs, admission requirements, and application process.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Technical Assistance</h3>
-                    <p className="text-gray-600">
-                      Need help with certificate verification or accessing resources? We're here to help.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">Partnership Opportunities</h3>
-                    <p className="text-gray-600">
-                      Interested in partnering with LIMA? Let's discuss how we can collaborate.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-2">General Inquiries</h3>
-                    <p className="text-gray-600">
-                      Have questions about LIMA, our mission, or how to get involved? Reach out!
-                    </p>
+                  <div className="flex items-center justify-center space-x-2">
+                    <SubmitButton>
+                      <div className="flex items-center justify-center space-x-2">
+                        <Send className="w-5 h-5" />
+                        <span>Send Message</span>
+                      </div>
+                    </SubmitButton>
                   </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="mt-8 p-6 bg-primary-50 rounded-xl">
-                  <h3 className="font-bold text-primary-900 mb-2">Quick Response</h3>
-                  <p className="text-sm text-primary-800">
-                    We typically respond to all inquiries within 24 hours during business days. 
-                    For urgent matters, please call us directly.
+            {/* Info Sidebar */}
+            <div>
+              <h2 className="text-3xl font-semibold text-white mb-6">Why Contact Us?</h2>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-semibold text-white mb-2">Admissions Support</h3>
+                  <p className="text-neutral-400">
+                    Get answers about our programs, admission requirements, and application process.
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-white mb-2">Technical Assistance</h3>
+                  <p className="text-neutral-400">
+                    Need help with certificate verification or accessing resources? We're here to help.
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-white mb-2">Partnership Opportunities</h3>
+                  <p className="text-neutral-400">
+                    Interested in partnering with LIMA? Let's discuss how we can collaborate.
+                  </p>
+                </div>
+                
+                <div>
+                  <h3 className="font-semibold text-white mb-2">General Inquiries</h3>
+                  <p className="text-neutral-400">
+                    Have questions about LIMA, our mission, or how to get involved? Reach out!
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </AnimatedSection>
 
-      {/* Map Section (Placeholder) */}
-      <AnimatedSection className="section-padding bg-gray-100">
-        <div className="section-container">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Find Us</h2>
-            <div className="bg-gray-300 rounded-2xl h-96 flex items-center justify-center">
-              <div className="text-center text-gray-600">
-                <MapPin className="w-12 h-12 mx-auto mb-4" />
-                <p className="text-lg">Map integration coming soon</p>
-                <p className="text-sm">No. 32 Itu Road, Uyo, Akwa-Ibom, Nigeria, West Africa</p>
+              <div className="mt-8 p-6 bg-neutral-900/60 border border-neutral-800 rounded-xl">
+                <h3 className="font-semibold text-white mb-2">Quick Response</h3>
+                <p className="text-sm text-neutral-400">
+                  We typically respond to all inquiries within 24 hours during business days. 
+                  For urgent matters, please call us directly.
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </div>
+    </AnimatedSection>
 
-      {showSuccess && (
-        <SuccessMessage
-          title="Message Sent!"
-          message="Thank you for contacting us. We've received your message and will respond within 24 hours."
-          onClose={() => {
-            setShowSuccess(false)
-          }}
-        />
-      )}
-    </div>
-  )
+    {/* Map Section */}
+    <AnimatedSection className="py-20 bg-black border-t border-neutral-800">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-semibold text-white mb-6 text-center">Find Us</h2>
+          <div className="bg-neutral-900/40 border border-neutral-800 rounded-2xl h-96 flex items-center justify-center">
+            <div className="text-center text-neutral-400">
+              <MapPin className="w-12 h-12 mx-auto mb-4" />
+              <p className="text-lg text-white mb-2">Map integration coming soon</p>
+              <p className="text-sm">No. 32 Itu Road, Uyo, Akwa-Ibom, Nigeria, West Africa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </AnimatedSection>
 
-}
+    {showSuccess && (
+      <SuccessMessage
+        title="Message Sent!"
+        message="Thank you for contacting us. We've received your message and will respond within 24 hours."
+        onClose={() => {
+          setShowSuccess(false)
+        }}
+      />
+    )}
+  </div>
+)
+
 
 
