@@ -1,27 +1,27 @@
-import { motion } from "framer-motion"
 import { ReactNode } from "react"
+import clsx from "clsx"
 
-interface AnimatedSectionProps {
+interface SoftPanelProps {
   children: ReactNode
   className?: string
+  hoverable?: boolean
 }
 
-export default function AnimatedSection({
+export default function SoftPanel({
   children,
   className = "",
-}: AnimatedSectionProps) {
+  hoverable = false,
+}: SoftPanelProps) {
   return (
-    <motion.section
-      className={className}
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{
-        duration: 0.5,
-        ease: "easeOut",
-      }}
+    <div
+      className={clsx(
+        "rounded-2xl bg-white/70 backdrop-blur-sm shadow-md border border-gray-200/60",
+        hoverable &&
+          "transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg",
+        className
+      )}
     >
       {children}
-    </motion.section>
+    </div>
   )
 }
